@@ -1,143 +1,161 @@
 # **Hacker Stats in Python**<br/>by **Justin Bois**
 
-Live training sessions are designed to mimic the flow of how a real data scientist would address a problem or a task. As such, a session needs to have some “narrative” where learners are achieving stated learning objectives in the form of a real-life data science task or project. For example, a data visualization live session could be around analyzing a dataset and creating a report with a specific business objective in mind _(ex: analyzing and visualizing churn)_, a data cleaning live session could be about preparing a dataset for analysis etc ... 
-
-As part of the 'Live training Spec' process, you will need to complete the following tasks:
-
-Edit this README by filling in the information for steps 1 - 4.
 
 ## Step 1: Foundations 
 
-This part of the 'Live training Spec' process is designed to help guide you through session design by having you think through several key questions. Please make sure to delete the examples provided here for you.
 
 ### A. What problem(s) will students learn how to solve? (minimum of 5 problems)
 
-> _Here's an example from the Python for Spreadsheeets Users live session_
->
-> - Key considerations to take in when transitioning from spreadsheets to Python.
-> - The Data Scientist mindset and keys to success in transitioning to Python.
-> - How to import `.xlsx` and `.csv` files into Python using `pandas`.
-> - How to filter a DataFrame using `pandas`.
-> - How to create new columns out of your DataFrame for more interesting features.
-> - Perform exploratory analysis of a DataFrame in `pandas`.
-> - How to clean a DataFrame using `pandas` to make it ready for analysis.
-> - Apply common spreadsheets operations such as pivot tables and vlookups in Python using `pandas`.
-> - Create simple, interesting visualizations using `matplotlib`.
+This live training will review the concepts of statistical inference laid out in Statistical Thinking in Python I and II using a new data set (one that I think is rather fun!). The goal is to reinforce the concepts and techniques from those courses and help students gain confidence applying them to new data analysis tasks. Specifically, we will:
+
+- Review fundamental notions of probability.
+- Perform graphical exploratory data analysis (EDA).
+- Review concepts of confidence intervals and null hypothesis significance tests (NHSTs).
+- Apply bootstrap methods for computing confidence intervals.
+- Investigate correlations in two-dimensional data.
+- Perform an NHST comparing two treatments in a data set.
 
 
 ### B. What technologies, packages, or functions will students use? Please be exhaustive.
 
-> - pandas
-> - matplotlib
-> - seaborn
+- NumPy
+- pandas
+- seaborn
+- Jupyter notebooks using Google Colab
+- [dc_stat_think](https://github.com/justinbois/dc_stat_think)
+
 
 ### C. What terms or jargon will you define?
 
-_Whether during your opening and closing talk or your live training, you might have to define some terms and jargon to walk students through a problem you’re solving. Intuitive explanations using analogies are encouraged._
+In our probably review, we will define and discuss:
 
-> _Here's an example from the [Python for Spreadsheeets Users live session](https://www.datacamp.com/resources/webinars/live-training-python-for-spreadsheet-users)._
-> 
-> - Packages: Packages are pieces of software we can import to Python. Similar to how we download, install Excel on MacOs, we import pandas on Python. (You can find it at minute 6:30)
+- **Frequentist interpretation of probability**: The probability of an observation represents a long-run frequency over a large number of identical repetitions of an experiment. These repetitions can be, and often are, hypothetical. For example, if I were to list an item on ebay, the probability that it will sell for over $100 is the fraction of times it do so in a very large number of hypothetical worlds in which I sell the item on ebay.
+- Probability distributions: Probability distributions provide the link between events to probability. For example a Normal distribution might link people's heights to probability. It is highly probable that a person is between five and six feet tall, but improbably that a person is above seven feet tall.
+- Generative distributions: Obtaining a measurement (by any means, experimentation, surveys, consumer trials, etc.) involves drawing samples out of a probability distribution. This distribution is called a generative distribution, and we do not in general know what it is. We can make models for the generative distributions, and we do this kind of model in the Statistical Thinking Courses, but we will not cover that in this live session.
+- Empirical distributions: An empirical distribution can be defined simply in terms of measured data. When we draw samples out of an empirical distribution, we simply randomly choose measurements we already made.
+- The plug-in principle: Under the plug-in principle, we use the empirical distribution in the place of the (unknown) true generative distribution in all of our statistical inference. This is the approach we will take in this live session.
+
+
 
 ### D. What mistakes or misconceptions do you expect? 
 
-_To help minimize the amount of Q&As and make your live training re-usable, list out some mistakes and misconceptions you think students might encounter along the way._
+- The most common misconception is often about what constitutes a null hypothesis significance test. The result of a NHST is a p-value, defined as follows. Assume null hypothesis is indeed true. With this assumption in place, the p-value is the probability of obtaining a value of a test statistic at least as what was observed. So, to specify a null hypothesis, we need a clear definition of the null hypothesis, the test statistic, and what it means to be at least as extreme as.
+- The distinction between a bootstrap hypothesis test and a permutation test is often confusing. Different hypotheses may be assessed by the two approaches. A permutation hypothesis can address the null hypothesis that two data sets of data come from the same generative distribution. A bootstrap hypothesis test can address a null hypothesis, e.g., that two data sets come from two different generative distributions, but they have the same mean.
+- The definition of a confidence interval is sometimes a sticking point. A 95% confidence interval of a mean (or median, standard deviation, ...) may be defined as follows. If we were to do a measurement again and again and again, then the mean (or median, standard deviation, ...) that we compute from the data will fall within a 95% confidence interval for 95% for these repeated experiments. In practice, we repeat the experiment by sampling out of the empirical distribution; this is bootstrapping.
 
-> _Here's an example from the [Data Visualization in Python live session](https://www.datacamp.com/resources/webinars/data-visualization-in-python)_
-> 
-> - Anatomy of a matplotlib figure: When calling a matplotlib plot, a figure, axes and plot is being created behind the background. (You can find it at minute 11)
-> - As long as you do understand how plots work behind the scenes, you don't need to memorize syntax to customize your plot. 
 
 ### E. What datasets will you use? 
 
-Live training sessions are designed to walk students through something closer to a real-life data science workflow. Accordingly, the dataset needs to accommodate that user experience. 
-As a rule of thumb, your dataset should always answer yes to the following question: 
-> Is the dataset/problem I’m working on, something an industry data scientist/analyst could work on? 
+We will be working with a fun data set. In a 2016 paper, [Beattie, et al.](https://doi.org/10.1098/rsos.160321) used the [Glasgow Facial Matching Test](https://en.wikipedia.org/wiki/Glasgow_Face_Matching_Test) (GFMT, [original paper](https://doi.org/10.3758/BRM.42.1.286)) to investigate how sleep deprivation affects a human subject’s ability to match faces, as well as the confidence the subject has in those matches. Briefly, the test works by having subjects look at a pair of faces. Two such pairs are shown below.
 
-Check our [datasets to avoid](https://instructor-support.datacamp.com/en/articles/2360699-datasets-to-avoid) list. 
+![GFMT faces](assets/gfmt_faces.png)
+
+For each pair of faces, the subject gets as much time as he or she needs and then says whether or not they are the same person. The subject then rates his or her confidence in the choice.
+
+In this study, subjects also took surveys to determine properties about their sleep. The Sleep Condition Indicator (SCI) is a measure of insomnia disorder over the past month (scores of 16 and below indicate insomnia). The Pittsburgh Sleep Quality Index (PSQI) quantifies how well a subject sleeps in terms of interruptions, latency, etc. A higher score indicates poorer sleep. The Epworth Sleepiness Scale (ESS) assesses daytime drowsiness.
+
+We will explore how sleep disorders affect subject's ability to discern faces and their confidence in doing so.
+
 
 ## Step 2: Who is this session for?
 
-Terms like "beginner" and "expert" mean different things to different people, so we use personas to help instructors clarify a live training's audience. When designing a specific live training, instructors should explain how it will or won't help these people, and what extra skills or prerequisite knowledge they are assuming their students have above and beyond what's included in the persona.
+This session is for anyone who wants to sharpen their skills in statistical inference. These skills apply across all industries and disciplines of interest to DataCamp learner; they are key for anyone working with data. Participants should have completed DataCamp courses Statistical Thinking in Python I and II.
 
-- [ ] Please select the roles and industries that align with your live training. 
-- [ ] Include an explanation describing your reasoning and any other relevant information. 
 
 ### What roles would this live training be suitable for?
 
 *Check all that apply.*
 
-- [ ] Data Consumer
-- [ ] Leader 
-- [ ] Data Analyst
-- [ ] Citizen Data Scientist
-- [ ] Data Scientist
-- [ ] Data Engineer
+- [x] Data Consumer
+- [x] Leader 
+- [x] Data Analyst
+- [x] Citizen Data Scientist
+- [x] Data Scientist
+- [x] Data Engineer
 - [ ] Database Administrator
-- [ ] Statistician
-- [ ] Machine Learning Scientist
+- [x] Statistician
+- [x] Machine Learning Scientist
 - [ ] Programmer
 - [ ] Other (please describe)
 
 ### What industries would this apply to?
 
-*List one or more industries that the content would be appropriate for.*
+The topics of this live training are really general. Performing EDA, computing confidence intervals, and (though to a lesser extent) performing hypothesis tests apply across so many industries and applications. Whether are you doing business analytics, quality control, public health, science, really anything involving collection and interpretation of data, statistical inference plays an important role.
 
 
 ### What level of expertise should learners have before beginning the live training?
 
-*List three or more examples of skills that you expect learners to have before beginning the live training*
+Learners should be able to do the following heading into the live session.
 
-> - Can draw common plot types (scatter, bar, histogram) using matplotlib and interpret them
-> - Can run a linear regression, use it to make predictions, and interpret the coefficients.
-> - Can calculate grouped summary statistics using SELECT queries with GROUP BY clauses.
+- Extract columns from pandas DataFrames.
+- Be comfortable with NumPy, particularly the random module.
+- Be able to make basic plots with Matplotlib; simple scatter plots should be sufficient.
+- We will review computing summary statistics (like means and medians), drawing bootstrap samples, and performing linear regressions, but familiarity with those methods will be helpful.
 
 
 ## Step 3: Prerequisites
 
-List any prerequisite courses you think your live training could use from. This could be the live session’s companion course or a course you think students should take before the session. Prerequisites act as a guiding principle for your session and will set the topic framework, but you do not have to limit yourself in the live session to the syntax used in the prerequisite courses.
+Learners should have completed DataCamp courses Statistical Thinking I and II. 
 
 
 ## Step 4: Session Outline
 
-A live training session usually begins with an introductory presentation, followed by the live training itself, and an ending presentation. Your live session is expected to be around 2h30m-3h long (including Q&A) with a hard-limit at 3h30m. You can check out our live training content guidelines [here](_LINK_). 
+### Introduction Slides 
+- Introduction to the webinar and instructor (led by DataCamp TA)
+- Our approach to statistical inference
+  + Statistical inference: quantification of uncertainty
+  + The frequentist interpretation of probability and probability distributions
+  + Hacker stats allows direct application of probability without mathematical gymnastics
+- Objectives
+  + Obtain plug-in estimates and confidence intervals for pertinent parameters
+  + Compare effect sizes between two samples
+  + Perform a null hypothesis significance text
+  + ...all with hacker stats using Python!
+- Introduction to the data set
+  + Domain knowledge is key for determining analysis procedures (no data scientist should work alone)
+  + Introduction to GFMT and sleep disorder study
 
 
-> _Example from [Python for Spreadsheet Users](https://www.datacamp.com/resources/webinars/live-training-python-for-spreadsheet-users)_
->
-> ### Introduction Slides 
-> - Introduction to the webinar and instructor (led by DataCamp TA)
-> - Introduction to the topics
->   - Discuss need to become data fluent
->   - Define data fluency
->   - Discuss how learning Python fits into that and go over session outline
->   - Set expectations about Q&A
->
-> ### Live Training
-> #### Exploratory Data Analysis
-> - Import data and print header of DataFrame `pd.read_excel()`, `.head()`
-> - Glimpse at the data to
->   - Get column types using `.dtypes`
->   - Use `.describe()`, `.info()`
-> - **Q&A** 
-> #### Data Cleaning and making it ready for analysis
-> - Convert date columns to datetime `pd.to_datetime()`
-> - Change column names
-> - Extract year, month from datetime `.strftime()`
-> - Drop an irrelevant column `.drop()`
-> - Fill missing values with `.fillna()`
-> #### Creating a report
-> - First report question: What is our overall sales performance this year? `.groupby()`, `.plt.plot()`
-> - Second report question: What is our overall sales performance this year? `.merge()`, `.groupby()`, `plt.plot()`
-> - Third report question: What is our overall sales performance this year? `.merge()`, `.groupby()`, `plt.plot()`
-> - **Q&A**
->
-> ### Ending slides
-> - Recap of what we learned
-> - The data science mindset
-> - Call to action and course recommendations
+### Live Training
 
-## Authoring your session
+#### Exploratory data analysis
+- Import data into a pandas DataFrame and display using `df.head()`.
+- Add a column to a data frame.
+- Extract a column while dropping NaNs.
+- Generate ECDFs.
+- Make scatter plots of possibly correlated variables.
+
+#### Bootstrap confidence intervals
+- Review of bootstrapping procedure, definition of a confidence interval, and the plug-in principle.
+- Write a function to obtain bootstrap samples.
+- Compare an ECDF of a bootstrap sample to the original data set.
+- Write a function to obtain bootstrap replicates.
+- Make an ECDF of bootstrap replicates.
+- Compute percentiles of bootstrap replicates to obtain a confidence interval.
+- Make a graphical display of confidence intervals.
+- **Q & A**
+
+#### Pairs bootstrap confidence intervals
+- Write a function to obtain pairs bootstrap samples.
+- Write a function to obtain pairs bootstrap replicates of the Pearson correlation.
+- Compute percentiles of bootstrap replicates to obtain a confidence interval.
+- For what aspects of this data set should we perform a linear regression?
+- Bonus assignment for after the live session: Perform a linear regression where appropriate and give a pairs bootstrap confidence interval for the slope.
+
+#### Null Hypothesis significance testing: a permutation test
+- Review definition of p-value and essential pieces of NHST specification.
+- Hacker stats approach: *simulate* data generation under the null hypothesis.
+- Hypothesis: two variables are identically distributed. Generate permutations to simulate it.
+- Compute p-value from permutation samples.
+- Bonus assignment for after the live session: How would you simulate a null hypothesis that the two variables are not necessarily identically distributed but do have the same mean? Simulate this and compute a p-value.
+
+
+### Ending slides
+- Recap of what we learned
+- Emphasize the importance of thinking probabilistically.
+- You can use your computer to do probability directly.
+
+<!-- ## Authoring your session
 
 To get yourself started with setting up your live session, follow the steps below:
 
@@ -162,3 +180,4 @@ _**How to author your notebook: By uploading notebook into GitHub**_
 
 
 You can check out either of those methods in action using this [recording](https://www.loom.com/share/1eeb148129244edd93fbc34bf5dc7f0d).
+ -->

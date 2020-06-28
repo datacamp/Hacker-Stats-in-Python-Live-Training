@@ -148,6 +148,7 @@ Learners should have completed DataCamp courses Statistical Thinking I and II.
 - Hypothesis: two variables are identically distributed. Generate permutations to simulate it.
 - Compute p-value from permutation samples.
 - Bonus assignment for after the live session: How would you simulate a null hypothesis that the two variables are not necessarily identically distributed but do have the same mean? Simulate this and compute a p-value.
+- **Q & A**
 
 
 ### Ending slides

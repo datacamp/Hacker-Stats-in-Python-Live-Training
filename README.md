@@ -13,7 +13,7 @@ This live training will review the concepts of statistical inference laid out in
 - Review concepts of confidence intervals and null hypothesis significance tests (NHSTs).
 - Apply bootstrap methods for computing confidence intervals.
 - Investigate correlations in two-dimensional data.
-- Perform an NHST comparing two treatments in a data set.
+- Perform a NHST comparing two treatments in a data set.
 
 
 ### B. What technologies, packages, or functions will students use? Please be exhaustive.
@@ -30,7 +30,7 @@ This live training will review the concepts of statistical inference laid out in
 In our probably review, we will define and discuss:
 
 - **Frequentist interpretation of probability**: The probability of an observation represents a long-run frequency over a large number of identical repetitions of an experiment. These repetitions can be, and often are, hypothetical. For example, if I were to list an item on ebay, the probability that it will sell for over $100 is the fraction of times it do so in a very large number of hypothetical worlds in which I sell the item on ebay.
-- Probability distributions: Probability distributions provide the link between events to probability. For example a Normal distribution might link people's heights to probability. It is highly probable that a person is between five and six feet tall, but improbably that a person is above seven feet tall.
+- Probability distributions: Probability distributions provide the link between events to probability. For example a Normal distribution might link people's heights to probability. It is highly probable that a person is between five and six feet tall, but improbable that a person is above seven feet tall.
 - Generative distributions: Obtaining a measurement (by any means, experimentation, surveys, consumer trials, etc.) involves drawing samples out of a probability distribution. This distribution is called a generative distribution, and we do not in general know what it is. We can make models for the generative distributions, and we do this kind of model in the Statistical Thinking Courses, but we will not cover that in this live session.
 - Empirical distributions: An empirical distribution can be defined simply in terms of measured data. When we draw samples out of an empirical distribution, we simply randomly choose measurements we already made.
 - The plug-in principle: Under the plug-in principle, we use the empirical distribution in the place of the (unknown) true generative distribution in all of our statistical inference. This is the approach we will take in this live session.
@@ -54,7 +54,7 @@ For each pair of faces, the subject gets as much time as he or she needs and the
 
 In this study, subjects also took surveys to determine properties about their sleep. The Sleep Condition Indicator (SCI) is a measure of insomnia disorder over the past month (scores of 16 and below indicate insomnia). The Pittsburgh Sleep Quality Index (PSQI) quantifies how well a subject sleeps in terms of interruptions, latency, etc. A higher score indicates poorer sleep. The Epworth Sleepiness Scale (ESS) assesses daytime drowsiness.
 
-We will explore how sleep disorders affect subject's ability to discern faces and their confidence in doing so.
+We will explore how the various sleep metrics are related to each other and how sleep disorders affect subjects' ability to discern faces and their confidence in doing so.
 
 
 ## Step 2: Who is this session for?
@@ -103,7 +103,7 @@ Learners should have completed DataCamp courses Statistical Thinking I and II.
 ### Introduction Slides 
 - Introduction to the webinar and instructor (led by DataCamp TA)
 - Our approach to statistical inference
-  + Statistical inference: quantification of uncertainty
+  + Statistical inference: deduction of properties of a generative distribution
   + The frequentist interpretation of probability and probability distributions
   + Hacker stats allows direct application of probability without mathematical gymnastics
 - Objectives
